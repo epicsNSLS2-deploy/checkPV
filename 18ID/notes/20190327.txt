@@ -1,0 +1,32 @@
+From: Ma, Jun 
+Sent: Wednesday, 27 March 2019 4:35 PM
+To: Caswell, Thomas <tcaswell@bnl.gov>; Gofron, Kazimierz <kgofron@bnl.gov>; Ge, Mingyuan <mingyuan@bnl.gov>; Xiao, Xianghui <xiao@bnl.gov>; Cowan, Matt <cowan@bnl.gov>
+Cc: Lee, Wah-Keat <wklee@bnl.gov>; Campbell, Stuart <scampbell@bnl.gov>; Yin, Zhijian <zyin@bnl.gov>
+Subject: RE: 18 ID interrupted scan
+
+We did another test in the afternoon with Tom and Xianghui. 
+
+We did series of scans, almost all of them failed at the first 2 or 3 cycles with the same symptom as we saw this morning. 
+
+We checked the file system (list last capturing file) under /NSLS2/xf18id1/DATA/Andor/2019/03/27/. We noticed that during the flyscan has timeout on “XF:18IDB-BI{Det:Neo}HDF1:FileName_RBV”, we can not list the file, it seems the system get some hiccups, the terminal is frozen until it’s timed out after a few mins. This might happen even without flyscan, we still need to find this out. Matt is doing some investigation on that. 
+================================================================
+
+From: Ma, Jun 
+Sent: Wednesday, March 27, 2019 11:33 AM
+To: Caswell, Thomas <tcaswell@bnl.gov>; Gofron, Kazimierz <kgofron@bnl.gov>; Ge, Mingyuan <mingyuan@bnl.gov>; Xiao, Xianghui <xiao@bnl.gov>; Cowan, Matt <cowan@bnl.gov>
+Cc: Lee, Wah-Keat <wklee@bnl.gov>; Campbell, Stuart <scampbell@bnl.gov>; Yin, Zhijian <zyin@bnl.gov>
+Subject: RE: 18 ID interrupted scan
+
+Dear All, 
+
+We did some scan test at 18 ID this morning, here is what we found out so far.  
+
+During scan, Bluesky sets “XF:18IDB-BI{Det:Neo}HDF1:FileName” and check the readback value from “XF:18IDB-BI{Det:Neo}HDF1:FileName_RBV”. 
+At 11:03:08AM this morning, the monitoring software running on xf18id-srv2 logged about 3 mins lag between the time of the setpoint and readback of this PV “XF:18IDB-BI{Det:Neo}HDF1:FileName”. 
+
+We’re still trying to understand what causes this. 
+
+Please refer to attached file for more detailed information (the last two records).
+
+Meanwhile, is it possible to add more retires/timeout, so that the scan doesn’t abort in this kind of situation?
+===============================================
