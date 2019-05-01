@@ -1,0 +1,37 @@
+2019-04-30
+Pete Jemian, Chen (ID30?)
+Base: 7.0.2
+ADSimDetector
+SDK 2.9.0
+Driver VErsion: 2.9.0
+ADCore 3.5.0
+
+Bug: BlueSky/ophyd is trying to doCapture, when we do not have NDArray.
+AreaDetector does not allow to acquire.
+BlueSky is reporting Timeout error, when it should have reported misconfiguration error, and should have performed the check. As Mark Rivers says, any human would know.
+This is a distruction.
+
+ADsimdete.stage_sigs["cam.acquire_period"] = 0.03
+adsimdete.stage()  {timed out on HDF1.Caputure_RBV} Check that plugins are primed, otherwise BlueSky is stuck/times-out.
+Scientists need to pump image before starting up. Another key word = "warmed up", 
+AD issue: Can not Capture/Start, because the dimensions are not known, and must have a 
+Can not capture in Single mode, but BS allows staging.
+BlueSky TimeStamp is 0, and  arraySize (height=0, width=0, depth=0). NDArray is not pushed up (no dimensions). 
+.doCaputer: ERROR must collect an arry to get dimensions first. 
+
+AcquireBusy.PUTF ??? issue in the ioc.
+
+Other detectors: Grasshopper but it runs on Windwos, because linux has issues. Dexela is another detector.
+
+Issue #647. #598
+Code branch for "fix_plugin_primed" branch was deleted. This branch might have had the fix.
+TimeStamp is changed by the AreaDetector
+
+There is a message in the ioc indicating that dimensions are not set.
+
+When ioc is rebooted, then this must be done. 
+======
+Freezing OS:
+TIFF does provides slash
+HDF1 does not provide slash at the end of the FilePath.
+os
